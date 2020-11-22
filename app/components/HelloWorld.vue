@@ -38,7 +38,7 @@
           </ListView>
         </TabContentItem>
         <TabContentItem>
-          <ListView for="mall in malls" @itemTap="onItemTap">
+          <ListView for="mall in malls" @itemTap="onMallTap">
             <v-template>
               <Label :text="mall.mall"></Label>
             </v-template>
@@ -132,7 +132,21 @@ export default {
           qpons: qponsInRange
         },
       });
+    },
 
+    onMallTap: function(args) {
+      console.log(args.item.mall);
+
+      var qponsInMall = this.qpons.filter(function (qpon) {
+        return qpon.mall == args.item.mall;
+      });
+
+      this.$navigateTo(QponList, {
+        transition: {},
+        props: {
+          qpons: qponsInMall
+        },
+      });
     }
   },
 
