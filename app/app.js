@@ -5,7 +5,7 @@ import HelloWorld from './components/HelloWorld';
 // Uncommment the following to see NativeScript-Vue output logs
 // Vue.config.silent = false;
 
-global.baseUrl = "https://d02f2a055df7.ngrok.io";
+global.baseUrl = "https://0b763e3b383d.ngrok.io";
 global.mallLoc = [
   {
     "mall": "IFC Mall",
