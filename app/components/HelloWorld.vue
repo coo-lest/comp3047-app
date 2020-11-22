@@ -80,7 +80,7 @@ import RadCartesianChart from "nativescript-ui-chart/vue";
 Vue.use(RadCartesianChart);
 
 import QponDetail from "./QponDetail";
-import QponRange from "./QponRange"
+import QponList from "./QponList";
 export default {
   methods: {
     onItemTap: function (args) {
@@ -120,12 +120,19 @@ export default {
     },
 
     onRangeTap: function(args) {
-      this.$navigateTo(QponRange, {
+      console.log(args.item[0]);
+      console.log(args.item[1]);
+      var qponsInRange = this.qpons.filter(function (qpon) {
+        return qpon.coins >= args.item[0] && qpon.coins <= args.item[1];
+      });
+
+      this.$navigateTo(QponList, {
         transition: {},
         props: {
-          selectedRange: args.item,
+          qpons: qponsInRange
         },
       });
+
     }
   },
 
@@ -152,6 +159,7 @@ export default {
     });
     var res = await fetch(global.baseUrl);
     this.qpons = await res.json();
+    this.malls = global.mallLoc;
     console.log("qpons");
     console.log(this.qpons);
   },
@@ -159,6 +167,7 @@ export default {
   data() {
     return {
       qpons: [],
+      malls: [],
       ladies: [],
       gents: [],
       products: [
