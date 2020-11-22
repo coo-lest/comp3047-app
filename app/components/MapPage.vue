@@ -1,7 +1,7 @@
 <template>
   <Page>
     <WebView
-      id="map" src="https://leaflet-api.vercel.app?center=22.34,114.18&zoom=17&marker=AC%20Hall%7C22.341072,114.179645&sensor="
+      id="map" src="https://leaflet-api.vercel.app?center=" + this.qponMall.latitude + "," + this.qponMall.longitude + "&zoom=17&marker=AC%20Hall%7C" + this.qponMall.latitude + "," + this.qponMall.longitude + "&sensor="
     />
   </Page>
 </template>
@@ -14,13 +14,7 @@ export default {
   },
 
   mounted() {
-      console.log(this.qponMall);
-      console.log("abc");
-      var mallObj = global.mallLoc.filter(function(m) {
-          return m.mall = qponMall;
-      });
-      console.log("def");
-      console.log(mallObj);
+    console.log("https://leaflet-api.vercel.app?center=" + this.qponMall.latitude + "," + this.qponMall.longitude + "&zoom=17&marker=AC%20Hall%7C" + this.qponMall.latitude + "," + this.qponMall.longitude + "&sensor=");
   }
 };
 </script>
