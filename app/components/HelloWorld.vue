@@ -45,29 +45,24 @@
           </ListView>
         </TabContentItem>
         <TabContentItem>
-            <ListView for="range in ranges" @itemTap="onRangeTap">
-              <v-template>
-                <Label :text="range[0]">
-                    <Span :text="range[0]" />
-                    <Span text=" ~ " />
-                    <Span :text="range[1]" />
-                </Label>
-              </v-template>
-            </ListView>
+          <ListView for="range in ranges" @itemTap="onRangeTap">
+            <v-template>
+              <Label :text="range[0]">
+                <Span :text="range[0]" />
+                <Span text=" ~ " />
+                <Span :text="range[1]" />
+              </Label>
+            </v-template>
+          </ListView>
         </TabContentItem>
         <TabContentItem>
-          <GridLayout rows="*" height="1000px">
-            <RadCartesianChart row="0" style="font-size: 12">
-              <BarSeries
-                v-tkCartesianSeries
-                :items="figures"
-                categoryProperty="name"
-                valueProperty="quantity"
-              />
-              <CategoricalAxis v-tkCartesianHorizontalAxis />
-              <LinearAxis v-tkCartesianVerticalAxis />
-            </RadCartesianChart>
-          </GridLayout>
+          <StackLayout>
+            <FlexboxLayout flexDirection="row">
+              <Label text="1" backgroundColor="#EEEEEE" flexGrow="1" />
+              <Label text="2" backgroundColor="#DDDDDD" flexGrow="2" />
+            </FlexboxLayout>
+            <Button class='h3' text='Logoff / Login' @tap='onLogTap'/>
+          </StackLayout>
         </TabContentItem>
       </BottomNavigation>
     </StackLayout>
@@ -81,6 +76,7 @@ Vue.use(RadCartesianChart);
 
 import QponDetail from "./QponDetail";
 import QponList from "./QponList";
+import LoginPage from "./LoginPage";
 export default {
   methods: {
     onItemTap: function (args) {
@@ -119,7 +115,7 @@ export default {
       }
     },
 
-    onRangeTap: function(args) {
+    onRangeTap: function (args) {
       console.log(args.item[0]);
       console.log(args.item[1]);
       var qponsInRange = this.qpons.filter(function (qpon) {
@@ -129,12 +125,12 @@ export default {
       this.$navigateTo(QponList, {
         transition: {},
         props: {
-          qpons: qponsInRange
+          qpons: qponsInRange,
         },
       });
     },
 
-    onMallTap: function(args) {
+    onMallTap: function (args) {
       console.log(args.item.mall);
 
       var qponsInMall = this.qpons.filter(function (qpon) {
@@ -144,8 +140,15 @@ export default {
       this.$navigateTo(QponList, {
         transition: {},
         props: {
-          qpons: qponsInMall
+          qpons: qponsInMall,
         },
+      });
+    },
+
+    onLogTap: function () {
+      this.$navigateTo(LoginPage, {
+        transition: {},
+        props: {}
       });
     }
   },
@@ -223,7 +226,13 @@ export default {
         },
       ],
       figures: [],
-      ranges: [[0, 299], [300, 599], [600, 899], [900, 1199], [1200, 9999]],
+      ranges: [
+        [0, 299],
+        [300, 599],
+        [600, 899],
+        [900, 1199],
+        [1200, 9999],
+      ],
     };
   },
 };
