@@ -56,7 +56,7 @@ export default {
         } else if (res.status == 403) {
           alert({ title: "Please login", okButtonText: "OK" });
         } else {
-          alert({ title: res.body, okButtonText: "OK" });
+          alert({ title: await res.json(), okButtonText: "OK" });
         }
       }
     },
