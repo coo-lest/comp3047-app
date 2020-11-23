@@ -57,7 +57,8 @@ global.mallLoc = [
     "latitude": 22.3814592,
     "longitude": 114.1889307
   }
-]
+];
+
 new Vue({
 
     template: `

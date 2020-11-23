@@ -19,9 +19,6 @@ export default {
   },
   methods: {
     onItemTap: function (args) {
-      console.log("Item with index: " + args.index + " tapped");
-      console.log("Product tapped: " + args.item.name);
-
       this.$navigateTo(QponDetail, {
         transition: {},
         props: {

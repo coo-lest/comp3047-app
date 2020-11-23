@@ -63,9 +63,9 @@
               />
             </GridLayout>
             <StackLayout row="1" col="0">
-            <Button text="Logoff / Login" @tap="onLogTap" />
-            <Button text="My Redeemed Coupons" @tap="onRedeemedTap" />
-          </StackLayout>
+              <Button text="Logoff / Login" @tap="onLogTap" />
+              <Button text="My Redeemed Coupons" @tap="onRedeemedTap" />
+            </StackLayout>
           </GridLayout>
         </TabContentItem>
       </BottomNavigation>
@@ -84,9 +84,6 @@ import LoginPage from "./LoginPage";
 export default {
   methods: {
     onItemTap: function (args) {
-      console.log("Item with index: " + args.index + " tapped");
-      console.log("Product tapped: " + args.item.name);
-
       this.$navigateTo(QponDetail, {
         transition: {},
         props: {
@@ -120,8 +117,6 @@ export default {
     },
 
     onRangeTap: function (args) {
-      console.log(args.item[0]);
-      console.log(args.item[1]);
       var qponsInRange = this.qpons.filter(function (qpon) {
         return qpon.coins >= args.item[0] && qpon.coins <= args.item[1];
       });
@@ -135,8 +130,7 @@ export default {
     },
 
     onMallTap: function (args) {
-      console.log(args.item.mall);
-
+      
       var qponsInMall = this.qpons.filter(function (qpon) {
         return qpon.mall == args.item.mall;
       });
@@ -169,7 +163,6 @@ export default {
       } else if (res.status == 403) {
         alert("Please Login");
       }
-
     },
   },
 
@@ -197,8 +190,6 @@ export default {
     var res = await fetch(global.baseUrl);
     this.qpons = await res.json();
     this.malls = global.mallLoc;
-    console.log("qpons");
-    console.log(this.qpons);
   },
 
   data() {
