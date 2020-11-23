@@ -145,7 +145,9 @@ export default {
       });
     },
 
-    onLogTap: function () {
+    onLogTap: async function () {
+      await fetch(global.baseUrl + "/user/logout");
+      
       this.$navigateTo(LoginPage, {
         transition: {},
         props: {}

@@ -1,6 +1,6 @@
 import Vue from 'nativescript-vue';
 
-import HelloWorld from './components/HelloWorld';
+import QponMobile from './components/QponMobile';
 
 // Uncommment the following to see NativeScript-Vue output logs
 // Vue.config.silent = false;
@@ -62,10 +62,10 @@ new Vue({
 
     template: `
         <Frame>
-            <HelloWorld />
+            <QponMobile />
         </Frame>`,
 
     components: {
-        HelloWorld
+        QponMobile
     }
 }).$start();

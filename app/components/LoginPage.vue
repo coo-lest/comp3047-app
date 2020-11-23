@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import HelloWorld from "./HelloWorld"
+import QponMobile from "./QponMobile"
 export default {
   props: [],
   methods: {
@@ -22,11 +22,9 @@ export default {
         }),
       });
 
-      console.log(res);
-
       if (res.ok) {
         alert("Login successful");
-        this.$navigateTo(HelloWorld, {
+        this.$navigateTo(QponMobile, {
           transition: {},
           props: {},
         });
