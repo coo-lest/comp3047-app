@@ -56,14 +56,17 @@
           </ListView>
         </TabContentItem>
         <TabContentItem>
-          <StackLayout>
-            <FlexboxLayout flexDirection="row">
-              <Label text="1" backgroundColor="#EEEEEE" flexGrow="1" />
-              <Label text="2" backgroundColor="#DDDDDD" flexGrow="2" />
-            </FlexboxLayout>
+          <GridLayout columns="*" rows="*, 3*">
+            <GridLayout row="0" col="0" columns="*, 2*" rows="*">
+              <Image row="0" col="0"
+                src="https://avatars2.githubusercontent.com/u/46864977?s=460&u=de25e87229941ffcbc3d27a9dd6051caac479fdd&v=4"
+              />
+            </GridLayout>
+            <StackLayout row="1" col="0">
             <Button text="Logoff / Login" @tap="onLogTap" />
             <Button text="My Redeemed Coupons" @tap="onRedeemedTap" />
           </StackLayout>
+          </GridLayout>
         </TabContentItem>
       </BottomNavigation>
     </StackLayout>
