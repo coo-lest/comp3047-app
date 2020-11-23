@@ -92,30 +92,6 @@ export default {
       });
     },
 
-    onButtonTap: async function () {
-      var result = await confirm({
-        title: "Confirm to place order?",
-        message: "Sending to httpbin.org",
-        okButtonText: "Yes",
-        cancelButtonText: "Cancel",
-      });
-      if (result) {
-        var response = await fetch("https://httpbin.org/post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(this.inCart),
-        });
-        if (response.ok) {
-          var data = await response.json();
-          this.figures = data.json;
-        } else {
-          console.log(response.status);
-        }
-      }
-    },
-
     onRangeTap: function (args) {
       var qponsInRange = this.qpons.filter(function (qpon) {
         return qpon.coins >= args.item[0] && qpon.coins <= args.item[1];
