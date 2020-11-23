@@ -61,7 +61,8 @@
               <Label text="1" backgroundColor="#EEEEEE" flexGrow="1" />
               <Label text="2" backgroundColor="#DDDDDD" flexGrow="2" />
             </FlexboxLayout>
-            <Button class='h3' text='Logoff / Login' @tap='onLogTap'/>
+            <Button text="Logoff / Login" @tap="onLogTap" />
+            <Button text="My Redeemed Coupons" @tap="onRedeemedTap" />
           </StackLayout>
         </TabContentItem>
       </BottomNavigation>
@@ -147,12 +148,26 @@ export default {
 
     onLogTap: async function () {
       await fetch(global.baseUrl + "/user/logout");
-      
+
       this.$navigateTo(LoginPage, {
         transition: {},
-        props: {}
+        props: {},
       });
-    }
+    },
+
+    onRedeemedTap: async function () {
+      var res = await fetch(global.baseUrl + "/qpon/my_coupons");
+
+      if (res.ok) {
+        this.$navigateTo(QponList, {
+          transition: {},
+          props: { qpons: await res.json() },
+        });
+      } else if (res.status == 403) {
+        alert("Please Login");
+      }
+
+    },
   },
 
   computed: {
