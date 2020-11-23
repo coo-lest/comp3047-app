@@ -63,7 +63,7 @@ export default {
 
     onAddressTap: function() {
       var mallObj = global.mallLoc.filter(function(m) {
-          return m.mall = this.tappedQpon.mall;
+          return m.mall == this.tappedQpon.mall;
       }.bind(this))[0];
       this.$navigateTo(MapPage, {
         transition: {},
