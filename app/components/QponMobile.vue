@@ -6,20 +6,16 @@
       <BottomNavigation>
         <TabStrip>
           <TabStripItem>
-            <Label text="Home"></Label>
-            <Image src="res://home"></Image>
+            <Label class="h3" fontWeight="bold" text="Home"></Label>
           </TabStripItem>
           <TabStripItem>
-            <Label text="Malls"></Label>
-            <Image src="res://settings"></Image>
+            <Label class="h3" fontWeight="bold" text="Malls"></Label>
           </TabStripItem>
           <TabStripItem>
-            <Label text="Coins"></Label>
-            <Image src="res://search"></Image>
+            <Label class="h3" fontWeight="bold" text="Coins"></Label>
           </TabStripItem>
           <TabStripItem>
-            <Label text="User"></Label>
-            <Image src="res://search"></Image>
+            <Label class="h3" fontWeight="bold" text="User"></Label>
           </TabStripItem>
         </TabStrip>
         <TabContentItem>
@@ -119,7 +115,8 @@ export default {
         transition: {},
         props: {
           qpons: qponsInRange,
-          pageTitle: ""
+          pageTitle: "",
+          actionBarHidden: true
         },
       });
     },
@@ -140,7 +137,7 @@ export default {
 
     onLogTap: async function () {
       await fetch(global.baseUrl + "/user/logout");
-      global.username = "";
+      global.username = "Please login";
 
       this.$navigateTo(LoginPage, {
         transition: {},
@@ -154,7 +151,7 @@ export default {
       if (res.ok) {
         this.$navigateTo(QponMallList, {
           transition: {},
-          props: { qpons: await res.json(), pageTitle: "My Redeemed Coupons" },
+          props: { qpons: await res.json(), pageTitle: "My Redeemed Coupons", actionBarHidden: false },
         });
       } else if (res.status == 403) {
         alert("Please Login");

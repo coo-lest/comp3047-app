@@ -6,7 +6,7 @@ import QponMobile from './components/QponMobile';
 // Vue.config.silent = false;
 
 global.baseUrl = "https://10c2244ac74e.ngrok.io";
-global.username = "";
+global.username = "Please login";
 global.mallLoc = [
   {
     "mall": "IFC Mall",
