@@ -1,5 +1,5 @@
 <template>
-  <Page>
+  <Page actionBarHidden="true">
     <StackLayout>
       <Image :src="tappedQpon.image" height="300" stretch="aspectFill" />
 

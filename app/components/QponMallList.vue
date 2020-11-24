@@ -1,10 +1,11 @@
 <template>
-  <Page>
+  <Page actionBarHidden="true">
     <ActionBar :title="pageTitle" />
     <ListView for="qpon in qpons" @itemTap="onItemTap">
       <v-template>
         <StackLayout>
           <Label class='h3' :text="qpon.restaurant" />
+          <Label :text="qpon.mall" />
         </StackLayout>
       </v-template>
     </ListView>

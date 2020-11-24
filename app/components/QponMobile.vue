@@ -1,5 +1,5 @@
 <template>
-  <Page @loaded="updateUsername">
+  <Page @loaded="updateUsername" actionBarHidden="true">
     <ActionBar title="Home" />
 
     <StackLayout>
@@ -56,7 +56,7 @@
           </ListView>
         </TabContentItem>
         <TabContentItem>
-          <GridLayout columns="*" rows="*, 3*">
+          <GridLayout columns="*" rows="*, 3*" margin="0, 30">
             <GridLayout
               columns="*, 2*"
               rows="*"
@@ -97,6 +97,7 @@ Vue.use(RadCartesianChart);
 
 import QponDetail from "./QponDetail";
 import QponList from "./QponList";
+import QponMallList from "./QponMallList";
 import LoginPage from "./LoginPage";
 export default {
   methods: {
@@ -114,10 +115,11 @@ export default {
         return qpon.coins >= args.item[0] && qpon.coins <= args.item[1];
       });
 
-      this.$navigateTo(QponList, {
+      this.$navigateTo(QponMallList, {
         transition: {},
         props: {
           qpons: qponsInRange,
+          pageTitle: ""
         },
       });
     },
@@ -131,6 +133,7 @@ export default {
         transition: {},
         props: {
           qpons: qponsInMall,
+          pageTitle: args.item.mall
         },
       });
     },
@@ -149,9 +152,9 @@ export default {
       var res = await fetch(global.baseUrl + "/qpon/my_coupons");
 
       if (res.ok) {
-        this.$navigateTo(QponList, {
+        this.$navigateTo(QponMallList, {
           transition: {},
-          props: { qpons: await res.json() },
+          props: { qpons: await res.json(), pageTitle: "My Redeemed Coupons" },
         });
       } else if (res.status == 403) {
         alert("Please Login");
