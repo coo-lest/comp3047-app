@@ -3,7 +3,7 @@
     <ActionBar title="Login" />
     <StackLayout>
       <TextField v-model="username" hint="username" />
-      <TextField v-model="password" hint="password" />
+      <TextField v-model="password" hint="password" secure="true" />
       <Button text="Login" @tap="onLoginTap" />
     </StackLayout>
   </Page>
