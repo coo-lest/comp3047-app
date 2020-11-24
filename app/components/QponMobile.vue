@@ -1,5 +1,5 @@
 <template>
-  <Page>
+  <Page @loaded="updateUsername">
     <ActionBar title="Home" />
 
     <StackLayout>
@@ -57,16 +57,28 @@
         </TabContentItem>
         <TabContentItem>
           <GridLayout columns="*" rows="*, 3*">
-            <FlexboxLayout columns="*, 2*" rows="*" text-align="center">
+            <GridLayout
+              columns="*, 2*"
+              rows="*"
+              text-align="center"
+              verticalAlignment="middle"
+            >
               <Image
                 row="0"
                 col="0"
                 src="https://avatars2.githubusercontent.com/u/46864977?s=460&u=de25e87229941ffcbc3d27a9dd6051caac479fdd&v=4"
               />
-              <StackLayout  row="0" col="1">
-                <Label class="h2 pull-right" :text="username"/>
-              </StackLayout>
-            </FlexboxLayout>
+              <FlexboxLayout
+                row="0"
+                col="1"
+                height="150"
+                verticalAlignment="middle"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Label class="h2" :text="username" />
+              </FlexboxLayout>
+            </GridLayout>
             <StackLayout row="1" col="0">
               <Button text="Logoff / Login" @tap="onLogTap" />
               <Button text="My Redeemed Coupons" @tap="onRedeemedTap" />
@@ -145,6 +157,10 @@ export default {
         alert("Please Login");
       }
     },
+
+    updateUsername: function () {
+      this.username = global.username;
+    },
   },
 
   computed: {
@@ -161,11 +177,7 @@ export default {
       return sum;
     },
   },
-  computed: {
-    username: function () {
-      return global.username;
-    },
-  },
+  computed: {},
 
   async mounted() {
     this.ladies = this.products.filter(function (p) {
@@ -181,6 +193,7 @@ export default {
 
   data() {
     return {
+      username: "",
       qpons: [],
       malls: [],
       ladies: [],

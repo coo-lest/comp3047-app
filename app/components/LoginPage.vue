@@ -1,5 +1,6 @@
 <template>
   <Page>
+    <ActionBar title="Login" />
     <StackLayout>
       <TextField v-model="username" hint="username" />
       <TextField v-model="password" hint="password" />
@@ -9,7 +10,6 @@
 </template>
 
 <script>
-import QponMobile from "./QponMobile"
 export default {
   props: [],
   methods: {
@@ -23,13 +23,9 @@ export default {
       });
 
       if (res.ok) {
-        alert("Login successful");
         global.username = this.username;
-        console.log(global.username);
-        this.$navigateTo(QponMobile, {
-          transition: {},
-          props: {},
-        });
+        await alert("Login successful");
+        this.$navigateBack();
       } else {
         alert(await res.json());
       }
