@@ -1,5 +1,5 @@
 <template>
-  <Page actionBarHidden="true">
+  <Page :actionBarHidden="actionBarHidden">
     <ActionBar :title="pageTitle" />
     <ListView for="qpon in qpons" @itemTap="onItemTap">
       <v-template>
@@ -15,7 +15,7 @@
 <script>
 import QponDetail from "./QponDetail";
 export default {
-  props: ["qpons", "pageTitle"],
+  props: ["qpons", "pageTitle", "actionBarHidden"],
   data() {
     return {
       qpons: [],
