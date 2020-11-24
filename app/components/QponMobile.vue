@@ -25,7 +25,7 @@
         <TabContentItem>
           <ListView for="qpon in qpons" @itemTap="onItemTap">
             <v-template>
-              <StackLayout orientation="vertical" height="350">
+              <StackLayout orientation="vertical">
                 <Image :src="qpon.image" height="300" stretch="aspectFill" />
                 <Label :text="qpon.title" class="h1" />
                 <Label :text="qpon.detail" class="body" />
@@ -57,11 +57,16 @@
         </TabContentItem>
         <TabContentItem>
           <GridLayout columns="*" rows="*, 3*">
-            <GridLayout row="0" col="0" columns="*, 2*" rows="*">
-              <Image row="0" col="0"
+            <FlexboxLayout columns="*, 2*" rows="*" text-align="center">
+              <Image
+                row="0"
+                col="0"
                 src="https://avatars2.githubusercontent.com/u/46864977?s=460&u=de25e87229941ffcbc3d27a9dd6051caac479fdd&v=4"
               />
-            </GridLayout>
+              <StackLayout  row="0" col="1">
+                <Label class="h2 pull-right" :text="username"/>
+              </StackLayout>
+            </FlexboxLayout>
             <StackLayout row="1" col="0">
               <Button text="Logoff / Login" @tap="onLogTap" />
               <Button text="My Redeemed Coupons" @tap="onRedeemedTap" />
@@ -106,7 +111,6 @@ export default {
     },
 
     onMallTap: function (args) {
-      
       var qponsInMall = this.qpons.filter(function (qpon) {
         return qpon.mall == args.item.mall;
       });
@@ -121,6 +125,7 @@ export default {
 
     onLogTap: async function () {
       await fetch(global.baseUrl + "/user/logout");
+      global.username = "";
 
       this.$navigateTo(LoginPage, {
         transition: {},
@@ -156,6 +161,12 @@ export default {
       return sum;
     },
   },
+  computed: {
+    username: function () {
+      return global.username;
+    },
+  },
+
   async mounted() {
     this.ladies = this.products.filter(function (p) {
       return p.department == "Ladies";

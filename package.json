@@ -55,6 +55,7 @@
         "node-sass": "^4.9.2",
         "sass-loader": "^7.1.0",
         "tns-android": "6.5.0",
+        "tns-ios": "6.5.0",
         "tns-platform-declarations": "6.5.0",
         "uglifyjs-webpack-plugin": "~1.2.7",
         "vue-loader": "^15.2.6",

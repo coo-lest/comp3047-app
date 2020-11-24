@@ -24,6 +24,8 @@ export default {
 
       if (res.ok) {
         alert("Login successful");
+        global.username = this.username;
+        console.log(global.username);
         this.$navigateTo(QponMobile, {
           transition: {},
           props: {},
