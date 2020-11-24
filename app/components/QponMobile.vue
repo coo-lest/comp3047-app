@@ -116,7 +116,7 @@ export default {
         props: {
           qpons: qponsInRange,
           pageTitle: "",
-          actionBarHidden: true
+          actionBarHidden: true,
         },
       });
     },
@@ -130,14 +130,18 @@ export default {
         transition: {},
         props: {
           qpons: qponsInMall,
-          pageTitle: args.item.mall
+          pageTitle: args.item.mall,
         },
       });
     },
 
     onLogTap: async function () {
-      await fetch(global.baseUrl + "/user/logout");
-      global.username = "Please login";
+      if (global.username != "Please login") {
+        await fetch(global.baseUrl + "/user/logout");
+        var prevUser = global.username;
+        global.username = "Please login";
+        await alert("Logged out " + prevUser);
+      }
 
       this.$navigateTo(LoginPage, {
         transition: {},
@@ -151,7 +155,11 @@ export default {
       if (res.ok) {
         this.$navigateTo(QponMallList, {
           transition: {},
-          props: { qpons: await res.json(), pageTitle: "My Redeemed Coupons", actionBarHidden: false },
+          props: {
+            qpons: await res.json(),
+            pageTitle: "My Redeemed Coupons",
+            actionBarHidden: false,
+          },
         });
       } else if (res.status == 403) {
         alert("Please Login");
