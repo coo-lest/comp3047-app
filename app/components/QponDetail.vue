@@ -5,7 +5,7 @@
 
       <ScrollView>
         <StackLayout class="m-10">
-          <Label class="h1" :text="tappedQpon.title" />
+          <Label class="h1" :text="tappedQpon.restaurant" />
           <Label class="body" :text="tappedQpon.detail" />
           <Label class="h2">
             <Span text="Mall: " />

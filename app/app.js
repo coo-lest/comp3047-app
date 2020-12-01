@@ -5,7 +5,7 @@ import QponMobile from './components/QponMobile';
 // Uncommment the following to see NativeScript-Vue output logs
 // Vue.config.silent = false;
 
-global.baseUrl = "https://10c2244ac74e.ngrok.io";
+global.baseUrl = "https://fec342d1d8be.ngrok.io";
 global.username = "Please login";
 global.mallLoc = [
   {

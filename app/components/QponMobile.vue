@@ -23,7 +23,7 @@
             <v-template>
               <StackLayout orientation="vertical">
                 <Image :src="qpon.image" height="300" stretch="aspectFill" />
-                <Label :text="qpon.title" class="h1" />
+                <Label :text="qpon.restaurant" class="h1" />
                 <Label :text="qpon.detail" class="body" />
                 <Label class="h2">
                   <Span text="Coins: "></Span>
